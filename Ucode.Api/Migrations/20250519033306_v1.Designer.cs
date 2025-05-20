@@ -12,7 +12,7 @@ using Ucode.Api.Data;
 namespace Ucode.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250410000417_v1")]
+    [Migration("20250519033306_v1")]
     partial class v1
     {
         /// <inheritdoc />
@@ -353,7 +353,8 @@ namespace Ucode.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<DateTime>("BirthDate")
+                    b.Property<DateTime?>("BirthDate")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("CreatedAt")

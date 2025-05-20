@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Ucode.Api.Data;
 using Ucode.Api.Handlers;
 using Ucode.Api.Models;
@@ -77,6 +75,7 @@ namespace Ucode.Api.Common.Api
             builder.Services.AddTransient<ICourseHandler, CourseHandler>();
             builder.Services.AddTransient<IGradeHandler, GradeHandler>();
             builder.Services.AddTransient<IEnrollmentHandler, EnrollmentHandler>();
+            builder.Services.AddTransient<IUserHandler, UserHandler>();
         }
     }
 }

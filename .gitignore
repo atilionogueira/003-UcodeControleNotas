@@ -1,14 +1,31 @@
-# Ignorar bin e obj, comuns em projetos .NET
+# Compilação
 bin/
 obj/
 
-# Ignorar configurações de ambiente, geralmente não versionadas
+# Configurações sensíveis
 appsettings.json
-appsettings.Development.json
+appsettings.*.json
+secrets.json
 
-# Ignorar a pasta do Visual Studio e arquivos temporários
+# Visual Studio
 .vs/
 *.user
 *.suo
+
+# Bancos locais
 *.db
 *.sqlite
+*.mdf
+*.ldf
+
+# IDEs alternativas
+.idea/
+
+# Logs e temporários
+*.log
+*.tmp
+*.bak
+
+# Publicações
+publish/
+wwwroot/dist/
