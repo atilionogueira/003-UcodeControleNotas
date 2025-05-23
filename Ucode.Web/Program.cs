@@ -5,6 +5,7 @@ using MudBlazor.Services;
 using Ucode.Core.Handlers;
 using Ucode.Web;
 using Ucode.Web.Handlers;
+using Ucode.Web.Handlers.Identity;
 using Ucode.Web.Security;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -34,5 +35,7 @@ builder.Services.AddHttpClient(Configuration.HttpClientName,opt =>
 builder.Services.AddTransient<IAccountHandler, AccountHandler>();
 builder.Services.AddTransient<IStudentHandler,StudentHandler>();
 builder.Services.AddTransient<ICourseHandler, CourseHandler>();
+builder.Services.AddTransient<IUserHandler, UserHandler>();
+
 
 await builder.Build().RunAsync();

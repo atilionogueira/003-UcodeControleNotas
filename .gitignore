@@ -1,31 +1,31 @@
-# Compilação
+# Build outputs
 bin/
 obj/
 
-# Configurações sensíveis
+# Sensitive configuration files
 appsettings.json
 appsettings.*.json
 secrets.json
 
-# Visual Studio
+# Visual Studio files
 .vs/
 *.user
 *.suo
 
-# Bancos locais
+# Local database files
 *.db
 *.sqlite
 *.mdf
 *.ldf
 
-# IDEs alternativas
+# Alternative IDEs
 .idea/
 
-# Logs e temporários
+# Logs and temp files
 *.log
 *.tmp
 *.bak
 
-# Publicações
+# Publish folder and bundled frontend assets
 publish/
 wwwroot/dist/

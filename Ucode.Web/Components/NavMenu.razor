@@ -1,4 +1,6 @@
-﻿<div class="d-flex justify-center pb-8 pt-8">
+﻿@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<div class="d-flex justify-center pb-8 pt-8">
     <img src="imgs/logo.png" alt="Ucode-Controle de Notas do Aluno" width="200" />
 </div>
 <MudNavMenu>
@@ -7,5 +9,27 @@
     <MudNavLink Href="/courses">Cursos</MudNavLink>
     <MudNavLink Href="/enrollments">Mátricula</MudNavLink>
     <MudNavLink Href="/grades">Notas</MudNavLink>
+    @if (isAdmin)
+    {
+        <MudNavGroup Icon="@Icons.Material.Filled.ManageAccounts" Text="Gerência de Contas">
+            <MudNavLink Href="/admin/user" Icon="@Icons.Material.Filled.Person">Usuários</MudNavLink>
+            <MudNavLink Href="/admin/role" Icon="@Icons.Material.Filled.Security">Roles</MudNavLink>
+            <MudNavLink Href="/admin/claim" Icon="@Icons.Material.Filled.VerifiedUser">Claims</MudNavLink>
+        </MudNavGroup>
+    }
+
     <MudNavLink Href="/sair">Sair</MudNavLink>
 </MudNavMenu>
+
+@code {
+    private bool isAdmin = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        // Verifica se o usuário autenticado possui a role "Admin"
+        isAdmin = user.IsInRole("Admin");
+    }
+}

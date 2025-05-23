@@ -9,7 +9,7 @@ namespace Ucode.Api.Endpoints.Identity.UsersEndpoints
     public class GetUserByIdEndpoint : IEndpoint
     {
         public static void Map(IEndpointRouteBuilder app)
-         => app.MapGet("/users/{id:long}", HandlerAsync)
+         => app.MapGet("/admin/user/{id:long}", HandlerAsync)
             .WithName("Get: User By Id")
             .WithSummary("Returns a user by Id")
             .WithDescription("Returns the user details for the given Id")

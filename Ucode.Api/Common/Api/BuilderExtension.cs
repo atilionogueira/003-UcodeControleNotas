@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Ucode.Api.Data;
 using Ucode.Api.Handlers;
+using Ucode.Api.Handlers.Identity;
 using Ucode.Api.Models;
 using Ucode.Core;
 using Ucode.Core.Handlers;

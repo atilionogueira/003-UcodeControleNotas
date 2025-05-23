@@ -9,7 +9,7 @@ namespace Ucode.Api.Endpoints.Identity.UsersEndpoints
     public class UpdateUserEndpoint : IEndpoint
     {
         public static void Map(IEndpointRouteBuilder app)
-        => app.MapPut("/users/{id:long}", HandlerAsync)
+        => app.MapPut("admin/user/{id:long}", HandlerAsync)
             .WithName("Update: User")
             .WithSummary("Updates an existing user")
             .WithDescription("Updates the details of an existing user by Id")

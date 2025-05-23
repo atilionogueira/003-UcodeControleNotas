@@ -1,7 +1,7 @@
 ﻿
 namespace Ucode.Core.Requests.Account.User
 {
-    public class GetUserByIdRequest
+    public class GetUserByIdRequest : Request
     {
         public long Id { get; set; }
     }

@@ -1,0 +1,51 @@
+﻿@page "/admin/user/editar/{id}"
+@inherits EditUserPage
+
+<MudText Typo="Typo.h3">Editar Curso </MudText>
+
+@if (IsBusy)
+{
+    <MudPaper Class="pa-8 mt-4">
+        <MudSkeleton Height="55px" />
+        <MudSkeleton Height="110px" />
+        <MudSkeleton Height="55px" />
+        <MudSkeleton Height="110px" />
+        <MudSkeleton Height="55px" />
+    </MudPaper>
+}
+else
+{
+    <MudPaper Class="pa-8 mt-4">
+        <EditForm Model="InputModel" OnValidSubmit="OnValidSubmitAsync">
+            <DataAnnotationsValidator />
+
+            <MudTextField T="string"
+                          Label="Login"
+                          HelperText="Campo obrigatório"
+                          InputType="InputType.Email"
+                          For="@(() => InputModel.UserName)"
+                          @bind-Value="InputModel.UserName" />
+
+            <MudTextField T="string"
+                          Label="E-mail"
+                          HelperText="Campo obrigatório"
+                          InputType="InputType.Email"
+                          For="@(() => InputModel.Email)"
+                          @bind-Value="InputModel.Email" />
+
+            <MudTextField T="string"
+                          Label="Telefone"
+                          HelperText="Informe seu número com DDD"
+                          InputType="InputType.Telephone"
+                          For="@(() => InputModel.PhoneNumber)"
+                          @bind-Value="InputModel.PhoneNumber" />          
+
+
+            <MudButton ButtonType="ButtonType.Submit"
+                       Variant="Variant.Filled"
+                       Color="Color.Primary">
+                Salvar
+            </MudButton>
+        </EditForm>
+    </MudPaper>
+}

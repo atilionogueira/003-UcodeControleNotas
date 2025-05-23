@@ -9,7 +9,7 @@ namespace Ucode.Api.Endpoints.Identity.UsersEndpoints
     public class GetAllUserEndpoint : IEndpoint
     {
         public static void Map(IEndpointRouteBuilder app)
-         => app.MapGet("/users", HandlerAsync)
+         => app.MapGet("/admin/user", HandlerAsync)
             .WithName("Get: All Users")
             .WithSummary("Returns all users")
             .WithDescription("Returns all users from the system")

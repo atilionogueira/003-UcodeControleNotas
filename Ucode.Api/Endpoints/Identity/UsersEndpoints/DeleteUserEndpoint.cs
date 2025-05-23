@@ -9,7 +9,7 @@ namespace Ucode.Api.Endpoints.Identity.UsersEndpoints
     public class DeleteUserEndpoint : IEndpoint
     {
         public static void Map(IEndpointRouteBuilder app)
-            => app.MapDelete("/users/{id}", HandlerAsync)
+            => app.MapDelete("/admin/user/{id}", HandlerAsync)
             .WithName("Delete: User")
             .WithSummary("Delete a user")
             .WithDescription("Delete a user by Id")

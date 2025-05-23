@@ -1,14 +1,15 @@
-﻿@page "/courses"
-@inherits ListCoursePage
+﻿@page "/admin/user"
+@inherits ListUserPage
+@using Ucode.Core.Responses.Account.User
 
-<MudText Typo="Typo.h3">Cursos</MudText>
+<MudText Typo="Typo.h3">Usuários</MudText>
 <div class="d-flex justify-end">
-    <MudButton Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.TwoTone.Add" Href="courses/adiciona">Novo Curso</MudButton>
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.TwoTone.Add" Href="/admin/user/adicionar">Novo Usuários</MudButton>
 </div>
 
-<MudDataGrid Class="mt-4" Items="@Courses" Filterable="true" QuickFilter="Filter" Hideable="true">
+<MudDataGrid T="UserResponse" Items ="Users" Class="mt-4"  Filterable="true" QuickFilter="Filter" Hideable="true">
     <ToolBarContent>
-        <MudText Typo="Typo.h6">Cursos</MudText>
+        <MudText Typo="Typo.h6">Usuario</MudText>
         <MudSpacer />
         <MudTextField @bind-Value="SearchTerm"
                       Placeholder="Filtrar..."
@@ -21,18 +22,21 @@
     </ToolBarContent>
     <Columns>
         <PropertyColumn Property="x => x.Id" Title="#" />
-        <PropertyColumn Property="x => x.Name" Title="Nome" />
+        <PropertyColumn Property="x => x.UserName" Title="Login" />
+        <PropertyColumn Property="x => x.Email" Title="E-mail" />
+
+
         <TemplateColumn Class="d-flex justify-end">
             <CellTemplate>
                 <MudStack Row>
                     <MudIconButton Icon="@Icons.Material.Filled.Edit"
-                                   Href="@($"/courses/editar/{context.Item.Id}")"
+                                   Href="@($"/admin/user/editar/{context.Item.Id}")"
                                    Color="Color.Primary">
                     </MudIconButton>
                     <MudIconButton Icon="@Icons.Material.Filled.Delete"
                                    Color="Color.Error"
                                    aria-label="Excluir"
-                                   OnClick="() => OnDeleteButtonClickedAsync(context.Item.Id, context.Item.Name)">
+                                   OnClick="() => OnDeleteButtonClickedAsync(context.Item.Id, context.Item.UserName)">
                     </MudIconButton>
                 </MudStack>
             </CellTemplate>

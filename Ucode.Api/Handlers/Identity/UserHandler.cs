@@ -8,7 +8,8 @@ using Ucode.Core.Responses.Account.User;
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 
-namespace Ucode.Api.Handlers
+namespace Ucode.Api.Handlers.Identity
+
 {
     public class UserHandler(UserManager<User> userManager, IHttpContextAccessor _httpContextAccessor) : IUserHandler
     {
@@ -180,8 +181,8 @@ namespace Ucode.Api.Handlers
             }
         }
 
-       
 
-      
+
+
     }
 }

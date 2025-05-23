@@ -10,7 +10,7 @@ namespace Ucode.Api.Endpoints.Identity.UsersEndpoints
     public class CreateUserEndpoint : IEndpoint
     {
         public static void Map(IEndpointRouteBuilder app)
-          => app.MapPost("/user", HandleAsync)
+          => app.MapPost("/admin/user", HandleAsync)
            .WithName("User: Create")
            .WithSummary("Create new User")
            .WithDescription("Creates a new user in the system")
