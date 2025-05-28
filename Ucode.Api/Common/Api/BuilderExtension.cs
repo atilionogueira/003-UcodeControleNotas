@@ -50,7 +50,7 @@ namespace Ucode.Api.Common.Api
 
             builder.Services
                 .AddIdentityCore<User>()
-                .AddRoles<IdentityRole<long>>()
+                .AddRoles<Role>()
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddApiEndpoints();
         }
@@ -77,6 +77,7 @@ namespace Ucode.Api.Common.Api
             builder.Services.AddTransient<IGradeHandler, GradeHandler>();
             builder.Services.AddTransient<IEnrollmentHandler, EnrollmentHandler>();
             builder.Services.AddTransient<IUserHandler, UserHandler>();
+            builder.Services.AddTransient<IRoleHandler, RoleHandler>();
         }
     }
 }

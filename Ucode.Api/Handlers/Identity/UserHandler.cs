@@ -64,7 +64,7 @@ namespace Ucode.Api.Handlers.Identity
                     PhoneNumber = user.PhoneNumber
                 };
 
-                return new Response<UserResponse>(response, 200);
+                return new Response<UserResponse>(response, 200, "Usuário criado com sucesso");
             }
             catch
             {

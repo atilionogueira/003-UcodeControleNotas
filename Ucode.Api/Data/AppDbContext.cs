@@ -8,8 +8,8 @@ using Ucode.Core.Models;
 namespace Ucode.Api.Data;
       
 public class AppDbContext(DbContextOptions<AppDbContext> options)
-           : IdentityDbContext<User,
-        IdentityRole<long>,
+           : IdentityDbContext<User,Role,
+      //  IdentityRole<long>,
         long,
         IdentityUserClaim<long>,
         IdentityUserRole<long>,
