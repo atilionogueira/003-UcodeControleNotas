@@ -38,6 +38,12 @@
                                    aria-label="Excluir"
                                    OnClick="() => OnDeleteButtonClickedAsync(context.Item.Id, context.Item.UserName)">
                     </MudIconButton>
+                    <MudIconButton Icon="@Icons.Material.Filled.AdminPanelSettings"
+                                   Color="Color.Secondary"
+                                   aria-label="Gerenciar Roles"
+                                   OnClick="() => OpenManageRolesDialogAsync(context.Item.Id, context.Item.UserName)">
+                    </MudIconButton>
+
                 </MudStack>
             </CellTemplate>
         </TemplateColumn>

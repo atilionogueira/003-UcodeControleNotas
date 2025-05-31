@@ -1,0 +1,41 @@
+﻿<MudDialog>
+    <DialogContent>
+        <MudText Typo="Typo.h6">Gerenciar Roles para @UserName</MudText>
+
+        @if (IsLoading)
+        {
+            <MudProgressCircular Indeterminate="true" Color="Color.Primary" />
+        }
+        else if (ErrorMessage is not null)
+        {
+            <MudAlert Severity="Severity.Error">@ErrorMessage</MudAlert>
+        }
+        else
+        {
+            <MudTable Items="Roles" Dense="true">
+                <HeaderContent>
+                    <MudTh>Role</MudTh>
+                    <MudTh>Associado</MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd>@context.RoleName</MudTd>
+                    <MudTd>
+                        <MudCheckBox @bind-Value="context.IsAssigned" />
+                    </MudTd>
+                </RowTemplate>
+            </MudTable>
+        }
+    </DialogContent>
+    <DialogActions>
+        <MudButton Variant="Variant.Text" Color="Color.Default" OnClick="Cancel">Cancelar</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="SaveAsync" Disabled="@IsLoading">Salvar</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [Parameter] public long UserId { get; set; }
+    [Parameter] public string UserName { get; set; } = string.Empty;
+
+    private async Task SaveAsync() => await SaveRolesAsync();
+    private void Cancel() => MudDialog.Cancel();
+}

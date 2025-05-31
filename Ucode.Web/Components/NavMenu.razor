@@ -22,14 +22,14 @@
 </MudNavMenu>
 
 @code {
-    private bool isAdmin = false;
-
+  //  private bool isAdmin = false;
+    private bool isAdmin;
     protected override async Task OnInitializedAsync()
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
 
         // Verifica se o usuário autenticado possui a role "Admin"
-        isAdmin = user.IsInRole("Admin");
+       isAdmin = user.IsInRole("Admin");
     }
 }

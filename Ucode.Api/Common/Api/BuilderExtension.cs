@@ -78,6 +78,7 @@ namespace Ucode.Api.Common.Api
             builder.Services.AddTransient<IEnrollmentHandler, EnrollmentHandler>();
             builder.Services.AddTransient<IUserHandler, UserHandler>();
             builder.Services.AddTransient<IRoleHandler, RoleHandler>();
+            builder.Services.AddTransient<IUserRoleHandler, UserRoleHandler>();
         }
     }
 }

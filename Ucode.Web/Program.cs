@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
 using Ucode.Core.Handlers;
 using Ucode.Web;
+using Ucode.Web.Handler.Identity;
 using Ucode.Web.Handlers;
 using Ucode.Web.Handlers.Identity;
 using Ucode.Web.Security;
@@ -36,6 +37,7 @@ builder.Services.AddTransient<IAccountHandler, AccountHandler>();
 builder.Services.AddTransient<IStudentHandler,StudentHandler>();
 builder.Services.AddTransient<ICourseHandler, CourseHandler>();
 builder.Services.AddTransient<IUserHandler, UserHandler>();
+builder.Services.AddTransient<IRoleHandler, RoleHandler>();
 
 
 await builder.Build().RunAsync();

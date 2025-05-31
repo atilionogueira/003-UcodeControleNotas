@@ -1,0 +1,23 @@
+﻿@page "/admin/role/adicionar"
+@inherits CreateRolePage
+
+<MudText Typo="Typo.h3">Novo Role</MudText>
+
+<MudPaper Class="pa-8 mt-4">
+    <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+        <DataAnnotationsValidator />
+        <MudTextField T ="String"
+            Label="Nome"
+            HelperText="Campo obrigatório"
+            InputType="InputType.Text"
+            For="@(() => InputModel.Name)"
+            @bind-Value="InputModel.Name"/>    
+
+    <MudButton ButtonType="ButtonType.Submit"
+               Variant="Variant.Filled"
+               Color="Color.Primary">
+               Salvar
+    </MudButton>
+
+    </EditForm>
+</MudPaper>

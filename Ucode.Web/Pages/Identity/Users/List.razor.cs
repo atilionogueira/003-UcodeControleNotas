@@ -3,6 +3,7 @@ using MudBlazor;
 using Ucode.Core.Handlers;
 using Ucode.Core.Requests.Account.User;
 using Ucode.Core.Responses.Account.User;
+using Ucode.Web.Pages.Identity.Users.Dialogs;
 
 namespace Ucode.Web.Pages.Identity.Users
 {
@@ -16,7 +17,7 @@ namespace Ucode.Web.Pages.Identity.Users
 
         #endregion
 
-        #region Services
+        #region Services       
         [Inject]
         public ISnackbar Snackbar { get; set; } = null!;
         [Inject]
@@ -73,11 +74,32 @@ namespace Ucode.Web.Pages.Identity.Users
                 var request = new DeleteUserRequest { Id = id };
                 await Handler.DeleteAsync(request);
                 Users.RemoveAll(x => x.Id == id);
-                Snackbar.Add($"Curso {name} excluída", Severity.Success);
+                Snackbar.Add($"Usuário{name} excluído", Severity.Success);
             }
             catch (Exception ex)
             {
                 Snackbar.Add(ex.Message, Severity.Error);
+            }
+        }
+
+        public async Task OpenManageRolesDialogAsync(long userId, string userName)
+        {
+            var parameters = new DialogParameters
+            {
+                { "UserId", userId },
+               { "UserName", userName }
+            };
+
+            var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Medium, FullWidth = true };
+
+            var dialog = DialogService.Show<ManageUserRolesDialog>("Gerenciar Roles", parameters, options);
+            var result = await dialog.Result;
+
+            if (!result.Canceled)
+            {
+                Snackbar.Add("Roles atualizadas com sucesso.", Severity.Success);
+                // Opcional: recarregar lista de usuários, se necessário
+                //   await LoadUsersAsync(); // se você tiver esse método
             }
         }
 
@@ -93,8 +115,8 @@ namespace Ucode.Web.Pages.Identity.Users
                 return true;
 
             return false;
-
-            #endregion
         };
+
     }
+    #endregion
 }
