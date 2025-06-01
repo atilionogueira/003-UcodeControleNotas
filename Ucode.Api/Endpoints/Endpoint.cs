@@ -81,6 +81,7 @@ namespace Ucode.Api.Endpoints
              .MapEndpoint<GetRoleByIdEndpoint>()
              .MapEndpoint<UpdateRoleEndpoint>()
              .MapEndpoint<GetUserRolesEndpoint>()
+             .MapEndpoint<CreateUserRolesEndpoint>()
              .MapEndpoint<UpdateUserRolesEndpoint>();          
 
         }

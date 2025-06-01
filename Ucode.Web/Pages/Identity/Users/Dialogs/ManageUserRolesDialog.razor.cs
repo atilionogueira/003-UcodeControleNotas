@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿
+using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using System.Net.Http.Json;
+using Ucode.Core.Handlers;
 using Ucode.Core.Requests.Account.UserRoles;
 using Ucode.Core.Responses;
 using Ucode.Core.Responses.Account.UserRoles;
@@ -9,21 +11,31 @@ namespace Ucode.Web.Pages.Identity.Users.Dialogs;
 
 public partial class ManageUserRolesDialog
 {
-    [Inject] private IHttpClientFactory HttpClientFactory { get; set; } = default!;
-    [Inject] private ISnackbar Snackbar { get; set; } = default!;
-    [Inject] private IDialogService DialogService { get; set; } = default!;
-    [CascadingParameter] private MudDialogInstance MudDialog { get; set; } = default!;
-
+    #region properties
     private List<RoleAssignmentResponse> Roles { get; set; } = new();
     private bool IsLoading { get; set; } = true;
     private bool _isSaving = false;
+   // private long _selectedRoleId;
     private string? ErrorMessage { get; set; }
+    #endregion
 
+    #region Servico
+    [Inject] private IHttpClientFactory HttpClientFactory { get; set; } = null!;
+    [Inject] public IUserRoleHandler UserRoleHandler { get; set; } = null!;
+    [Inject] private ISnackbar Snackbar { get; set; } = null!;
+    [Inject] private IDialogService DialogService { get; set; } = null!;
+    [CascadingParameter] private MudDialogInstance MudDialog { get; set; } = null!;
+    #endregion
+
+
+    #region override
     protected override async Task OnInitializedAsync()
     {
         await LoadRolesAsync();
     }
+    #endregion
 
+    #region methods
     private async Task LoadRolesAsync()
     {
         try
@@ -54,6 +66,7 @@ public partial class ManageUserRolesDialog
             IsLoading = false;
         }
     }
+   
 
     protected async Task SaveRolesAsync()
     {
@@ -76,7 +89,7 @@ public partial class ManageUserRolesDialog
 
             if (response.IsSuccessStatusCode)
             {
-              //  Snackbar.Add("Roles atualizadas com sucesso!", Severity.Success);
+                //  Snackbar.Add("Roles atualizadas com sucesso!", Severity.Success);
                 MudDialog.Close(DialogResult.Ok(true));
             }
             else
@@ -94,4 +107,5 @@ public partial class ManageUserRolesDialog
             _isSaving = false;
         }
     }
+    #endregion
 }

@@ -38,6 +38,7 @@ builder.Services.AddTransient<IStudentHandler,StudentHandler>();
 builder.Services.AddTransient<ICourseHandler, CourseHandler>();
 builder.Services.AddTransient<IUserHandler, UserHandler>();
 builder.Services.AddTransient<IRoleHandler, RoleHandler>();
+builder.Services.AddTransient<IUserRoleHandler,UserRoleHandler>();
 
 
 await builder.Build().RunAsync();

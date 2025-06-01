@@ -6,7 +6,7 @@
         {
             <MudProgressCircular Indeterminate="true" Color="Color.Primary" />
         }
-        else if (ErrorMessage is not null)
+        else if (!string.IsNullOrWhiteSpace(ErrorMessage))
         {
             <MudAlert Severity="Severity.Error">@ErrorMessage</MudAlert>
         }
@@ -26,9 +26,20 @@
             </MudTable>
         }
     </DialogContent>
-    <DialogActions>
-        <MudButton Variant="Variant.Text" Color="Color.Default" OnClick="Cancel">Cancelar</MudButton>
-        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="SaveAsync" Disabled="@IsLoading">Salvar</MudButton>
+
+    <DialogActions>        
+        <MudTooltip Text="Salvar alterações">
+            <MudIconButton Icon="@Icons.Material.Filled.Save"
+                           Color="Color.Primary"
+                           OnClick="SaveAsync"
+                           Disabled="@IsLoading" />
+        </MudTooltip>
+
+        <MudTooltip Text="Cancelar">
+            <MudIconButton Icon="@Icons.Material.Filled.Close"
+                           Color="Color.Default"
+                           OnClick="Cancel" />
+        </MudTooltip>
     </DialogActions>
 </MudDialog>
 
