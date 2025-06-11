@@ -4,34 +4,45 @@ using Ucode.Core.Handlers;
 using Ucode.Core.Models;
 using Ucode.Core.Requests.Enrollments;
 using Ucode.Core.Responses;
+using Ucode.Core.Responses.Enrollment;
 
 namespace Ucode.Api.Handlers
 {
     public class EnrollmentHandler(AppDbContext context) : IEnrollmentHandler
     {
 
-        public async Task<PagedResponse<List<Enrollment>>> GetAllAsync(GetAllEnrollmentRequest request)
+        public async Task<PagedResponse<List<EnrollmentListResponse>>> GetAllAsync(GetAllEnrollmentRequest request)
         {
             try
             {
                 var query = context
                .Enrollments
+               .Include(e => e.Student)
+               .Include(e => e.Course)
                .AsNoTracking()
                .Where(x => x.UserId == request.UserId);
             
                 var enrollment = await query
                     .Skip((request.PageNumber - 1) * request.PageSize)
                     .Take(request.PageSize)
+                     .Select(e => new EnrollmentListResponse
+                     {
+                         Id = e.Id,
+                         StudentName = e.Student.Name,
+                         CourseName = e.Course.Name,
+                         Status = e.Status
+                         
+                     })
                     .ToListAsync();
 
                 var count = await query.CountAsync();
 
-                return new PagedResponse<List<Enrollment>>(enrollment, count, request.PageNumber, request.PageSize);
+                return new PagedResponse<List<EnrollmentListResponse>>(enrollment, count, request.PageNumber, request.PageSize);
 
             }
             catch
             {
-                return new PagedResponse<List<Enrollment>>(null, 500, "Não foi possível consultar as matriculas");
+                return new PagedResponse<List<EnrollmentListResponse>>(null, 500, "Não foi possível consultar as matriculas");
             }
 
         }
@@ -60,8 +71,12 @@ namespace Ucode.Api.Handlers
                 var enrollment = new Enrollment
                 {
                     UserId = request.UserId,
+                    EnrollmentNumber = Guid.NewGuid().ToString("N")[..8],
                     CourseId = request.CourseId,
-                    StudentId = request.StudentId
+                    StudentId = request.StudentId,
+                    Status = request.Status,
+                    IsActive = request.IsActive,
+                    CreatedAt = DateTime.Now,
                 };
 
                 await context.Enrollments.AddAsync(enrollment);
@@ -74,7 +89,7 @@ namespace Ucode.Api.Handlers
                 return new Response<Enrollment?>(null, 500, "Não foi possível criar o matrícula");
             }
         }
-        public async Task<Response<Enrollment?>> UpdateAsync(UpdateEnrollmentsRequest request)
+        public async Task<Response<Enrollment?>> UpdateAsync(UpdateEnrollmentRequest request)
         {
             try
             {
@@ -87,7 +102,10 @@ namespace Ucode.Api.Handlers
 
                 enrollment.CourseId = request.CourseId;
                 enrollment.StudentId = request.StudentId;
-                enrollment.UpdatedAt = request.UpdatedAt;
+                enrollment.Status = request.Status;
+                enrollment.IsActive = request.IsActive;
+                enrollment.UpdatedAt = DateTime.Now;
+                enrollment.UserId = request.UserId;
 
                 context.Enrollments.Update(enrollment);
                 await context.SaveChangesAsync();

@@ -26,11 +26,7 @@ namespace Ucode.Api.Handlers
 
                 var count = await query.CountAsync();
 
-                return new PagedResponse<List<Course>>(
-                    courses,
-                    count,
-                    request.PageNumber,
-                    request.PageSize);
+                return new PagedResponse<List<Course>>(courses,count,request.PageNumber,request.PageSize);
             }
             catch
             {

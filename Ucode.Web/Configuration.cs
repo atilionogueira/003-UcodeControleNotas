@@ -8,8 +8,10 @@ namespace Ucode.Web
         public const string HttpClientName = "ucode";
         public static string BackendUrl { get; set; } = "https://localhost:7209";
 
+
         public static MudTheme Theme = new()
         {
+            
             Typography = new Typography
             {
                 Default = new Default
@@ -19,6 +21,7 @@ namespace Ucode.Web
             },
             Palette = new PaletteLight
             {
+                
                 Primary = new MudColor("#0D47A1"), // Azul escuro
                 PrimaryContrastText = Colors.Shades.White, // Bom contraste com azul escuro
                 Secondary = Colors.BlueGrey.Default, // Azul acinzentado para suavizar
@@ -27,10 +30,13 @@ namespace Ucode.Web
                 AppbarText = Colors.Shades.White,
                 TextPrimary = Colors.Grey.Darken3, // Texto escuro, mas não preto
                 DrawerText = Colors.Shades.White,
-                DrawerBackground = Colors.BlueGrey.Darken4 // Azul acinzentado escuro no menu
+                DrawerBackground = "#0D47A1",
+                
             },
-            PaletteDark = new PaletteDark
+            
+           PaletteDark = new PaletteDark
             {
+                
                 Primary = Colors.Blue.Lighten2, // Azul claro para se destacar no escuro
                 PrimaryContrastText = Colors.Shades.White, // Texto branco sobre azul claro
                 Secondary = Colors.BlueGrey.Default, // Azul acinzentado como secundária
@@ -42,7 +48,10 @@ namespace Ucode.Web
                 AppbarText = Colors.Shades.White,
                 TextPrimary = Colors.Shades.White,
                 TextSecondary = Colors.Grey.Lighten1
+                
             }
+            
         };
-    }
+            
+        }
 }

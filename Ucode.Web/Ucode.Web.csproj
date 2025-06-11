@@ -17,7 +17,7 @@
   
 
   <ItemGroup>
-    <ProjectReference Include="..\Ucode.Core\Ucode.Core.csproj" />
+    <ProjectReference Include="..\Ucode.Core\Ucode.Core.csproj" />	
   </ItemGroup>
 
 </Project>

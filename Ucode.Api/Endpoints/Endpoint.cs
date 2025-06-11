@@ -52,7 +52,7 @@ namespace Ucode.Api.Endpoints
               .MapEndpoint<GetGradeByIdEndpoint>()
               .MapEndpoint<GetAllGradeEndpoint>();
 
-            endpoints.MapGroup("v1/Enrollment")
+            endpoints.MapGroup("v1/enrollments")
              .WithTags("Enrollment")
              .RequireAuthorization()
              .MapEndpoint<CreateEnrollmentEndpoint>()

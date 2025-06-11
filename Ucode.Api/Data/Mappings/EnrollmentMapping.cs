@@ -8,9 +8,18 @@ namespace Ucode.Api.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<Enrollment> builder)
         {
-            builder.ToTable("Enrollment");
+            builder.ToTable("Enrollment");            
 
             builder.HasKey(x => x.Id);
+
+            builder.Property(x => x.EnrollmentNumber)
+            .IsRequired()
+            .HasMaxLength(8)
+            .HasColumnType("VARCHAR");
+
+            builder.Property(x => x.Status)
+           .IsRequired(true)
+           .HasColumnType("SMALLINT");
 
             builder.Property(x => x.CreatedAt)
                 .IsRequired(true);

@@ -20,7 +20,7 @@ namespace Ucode.Api.Endpoints.Enrollments
         private static async Task<IResult> HandleAsync(
             ClaimsPrincipal user,
             IEnrollmentHandler handler,
-            UpdateEnrollmentsRequest request,
+            UpdateEnrollmentRequest request,
             long id)
         {
             request.UserId = user.Identity?.Name ?? string.Empty;

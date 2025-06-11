@@ -12,8 +12,8 @@ namespace Ucode.Api.Endpoints.Enrollments
         public static void Map(IEndpointRouteBuilder app)
             => app.MapGet("/{id}", HandleAsync)
             .WithName("Enrollment: Get By Id")
-            .WithSummary("Retrieves all enreollment")
-            .WithDescription("Retrieves all enreollment")
+            .WithSummary("Retrieves by Id enreollment")
+            .WithDescription("Retrieves by Id enreollment")
             .WithOrder(4)
             .Produces<Response<Enrollment?>>();
 
